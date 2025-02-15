@@ -15,15 +15,21 @@
 
 .carousel_containter{
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
     padding: 0;
     position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    margin : 30px;
 }
 
 .carousel_track{
     margin: 0;
     padding: 0;
     list-style: none;
+    position: relative;
+    height: 100%;
+    transition: transform 100ms ease-in;
 }
 
 .carousel_slid{
@@ -47,11 +53,11 @@
 
 .carousel__button--left{
 
-    left: -50px;
+    left: -30px;
 }
 
 .carousel__button--right{
-    right: -40px;
+    right: -20px;
 }
 
 .carousel_button img{
