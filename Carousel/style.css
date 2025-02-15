@@ -67,7 +67,7 @@
 
 
 .carouel_nav{
-    /* background-color: bisque; */
+    background-color: bisque;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -76,15 +76,21 @@
 }
 
 .carousel_indicator{
+    position: relative;
     border: 0;
     border-radius: 50%;
     width: 12px;
     height: 12px;
-    background-color: rgba(0,0,0,.3);
+    /* background-color: rgba(0,0,0,.75); */
     margin: 0 12px;
+    cursor: pointer;
    
 }
 
 .carousel_indicator.current_slid{
     background-color: rgba(0,0,0,.75);
+}
+
+.is_hidden{
+    display: none;
 }
