@@ -1,93 +1,84 @@
-
-
 const track = document.querySelector('.carousel_track');
 const slides = Array.from(track.children);
-
 const nextButton = document.querySelector('.carousel__button--right');
 const prevButton = document.querySelector('.carousel__button--left');
-const dotnaves = document.querySelector('.carouel_nav');
-const dots = Array.from(dotnaves.children);
+const dotNavs = document.querySelector('.carouel_nav'); // Corrected variable name
+const dots = Array.from(dotNavs.children);
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 
-// arrange the slides next to another slides
-
-
-// we can manage all  the slides by using foreach loop
-
-const setSlidePosition = (slide, index) =>{
+// Arrange the slides next to each other
+const setSlidePosition = (slide, index) => {
     slide.style.left = slideWidth * index + 'px';
-}
-
-
+};
 slides.forEach(setSlidePosition);
 
-// when i clike left move slides to the left
-// when i clik right move slides to the right
-
+// Move to a specific slide
 const moveToSlide = (track, currentSlide, targetSlide) => {
-    track.style.transform = 'translateX(-'+ targetSlide.style.left + ')';
-
+    track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
     currentSlide.classList.remove('current_carousel_slid');
     targetSlide.classList.add('current_carousel_slid');
-}
+};
 
-prevButton.addEventListener('click', e => {
+// Update the active dot
+const updateDots = (currentDot, targetDot) => {
+    if (currentDot) {
+        currentDot.classList.remove('current_slid');
+    }
+    if (targetDot) {
+        targetDot.classList.add('current_slid');
+    }
+};
+
+// Hide or show buttons based on slide position
+const updateButtons = (targetIndex) => {
+    if (targetIndex === 0) {
+        prevButton.classList.add('is_hidden');
+        nextButton.classList.remove('is_hidden');
+    } else if (targetIndex === slides.length - 1) {
+        prevButton.classList.remove('is_hidden');
+        nextButton.classList.add('is_hidden');
+    } else {
+        prevButton.classList.remove('is_hidden');
+        nextButton.classList.remove('is_hidden');
+    }
+};
+
+// Move to the previous slide
+prevButton.addEventListener('click', (e) => {
     const currentSlide = track.querySelector('.current_carousel_slid');
     const prevSlide = currentSlide.previousElementSibling;
-    const currentDot = dotnaves.querySelectorAll('.current_slid');
+    const currentDot = dotNavs.querySelector('.current_slid');
     const prevDot = currentDot.previousElementSibling;
 
     moveToSlide(track, currentSlide, prevSlide);
-    updatesDots(currentDot, prevDot);
-} )
+    updateDots(currentDot, prevDot);
+    updateButtons(slides.indexOf(prevSlide));
+});
 
-const updatesDots = (currentDot, targetDot) =>{
-    currentDot.classList.remove('current_slid');
-    targetDot.classList.add('current_slid');
-}
-
-
-nextButton.addEventListener('click', e => {
+// Move to the next slide
+nextButton.addEventListener('click', (e) => {
     const currentSlide = track.querySelector('.current_carousel_slid');
     const nextSlide = currentSlide.nextElementSibling;
-    const currentDot = dotnaves.querySelectorAll('.current_slid');
+    const currentDot = dotNavs.querySelector('.current_slid');
     const nextDot = currentDot.nextElementSibling;
 
-    
     moveToSlide(track, currentSlide, nextSlide);
-    // movbe to the next slide
-    updatesDots(currentDot, nextDot);
-    
-    
-})
-// when i clike the nav indicator then also move to the slide
+    updateDots(currentDot, nextDot);
+    updateButtons(slides.indexOf(nextSlide));
+});
 
-dotnaves.addEventListener('click', e =>{
-     const targetDot = e.target.closest('button');
+// Move to a specific slide when a dot is clicked
+dotNavs.addEventListener('click', (e) => {
+    const targetDot = e.target.closest('button');
+    if (!targetDot) return;
 
-     if(!targetDot) return;
+    const currentSlide = track.querySelector('.current_carousel_slid');
+    const currentDot = dotNavs.querySelector('.current_slid');
+    const targetIndex = dots.findIndex((dot) => dot === targetDot);
+    const targetSlide = slides[targetIndex];
 
-     const currentSlide = track.querySelector('.current_slid');
-     const currentDot = dotnaves.querySelector('.current_slid');
-     const targetIndex = dots.findIndex(dot => dot === targetDot);
-     const targetSlide = slides[targetIndex] // to get each slide with each index
-
-     moveToSlide(track, currentSlide, targetSlide);
-
-
-     updatesDots(currentDot, targetDot);
-
-     if(targetIndex === 0){
-        prevButton.classList.add('is_hidden');
-        nextButton.classList.remove('is_hidden');
-    
-     } else if(targetIndex === slides.length-1){
-        prevButton.classList.remove('is_hidden');
-        nextButton.classList.add('is_hidden');
-     } else {
-        prevButton.classList.remove('is_hidden');
-        nextButton.classList.remove('is_hideen');
-     }
-     
-})
+    moveToSlide(track, currentSlide, targetSlide);
+    updateDots(currentDot, targetDot);
+    updateButtons(targetIndex);
+});

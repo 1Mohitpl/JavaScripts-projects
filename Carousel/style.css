@@ -1,73 +1,64 @@
-.carousel{
-     position: relative;
-     height: 600px;
-     width: 80%;
-     margin:  0 auto;
+/* Existing CSS (unchanged) */
+.carousel {
+    position: relative;
+    height: 600px;
+    width: 80%;
+    margin: 0 auto;
 }
 
-
-.carousel_images{
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
-
-}
-
-.carousel_containter{
+.carousel_images {
+    width: 100%;
     height: 100%;
-    /* background-color: aqua; */
+    object-fit: cover;
+}
+
+.carousel_containter {
+    height: 100%;
     padding: 0;
     position: relative;
     overflow: hidden;
     border-radius: 20px;
-    margin : 30px;
+    margin: 30px;
 }
 
-.carousel_track{
+.carousel_track {
     margin: 0;
     padding: 0;
     list-style: none;
     position: relative;
     height: 100%;
-    transition: transform 100ms ease-in;
+    transition: transform 250ms ease-in;
 }
 
-.carousel_slid{
-     
+.carousel_slid {
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
-
 }
 
-.carousel_button{
-     position: absolute;
-     top: 50%;
-     transform: translateY(-50%);
-     background: transparent;
-     border: 0;
-     cursor: pointer;
-    
+.carousel_button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
 }
 
-.carousel__button--left{
-
+.carousel__button--left {
     left: -30px;
 }
 
-.carousel__button--right{
+.carousel__button--right {
     right: -20px;
 }
 
-.carousel_button img{
-
+.carousel_button img {
     width: 30px;
 }
 
-
-.carouel_nav{
-    background-color: bisque;
+.carouel_nav {
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -75,22 +66,99 @@
     padding: 10px 0;
 }
 
-.carousel_indicator{
+.carousel_indicator {
     position: relative;
     border: 0;
     border-radius: 50%;
     width: 12px;
     height: 12px;
-    /* background-color: rgba(0,0,0,.75); */
     margin: 0 12px;
     cursor: pointer;
-   
 }
 
-.carousel_indicator.current_slid{
-    background-color: rgba(0,0,0,.75);
+.carousel_indicator.current_slid {
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
-.is_hidden{
+.is_hidden {
     display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .carousel {
+        width: 90%; /* Slightly wider on tablets */
+        height: 500px; /* Reduce height for tablets */
+    }
+
+    .carousel_button img {
+        width: 25px; /* Smaller buttons on tablets */
+    }
+
+    .carousel__button--left {
+        left: -20px; /* Adjust button position */
+    }
+
+    .carousel__button--right {
+        right: -15px; /* Adjust button position */
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        width: 95%; /* Wider on smaller tablets */
+        height: 400px; /* Reduce height further */
+    }
+
+    .carousel_button img {
+        width: 20px; /* Smaller buttons on smaller devices */
+    }
+
+    .carousel__button--left {
+        left: -15px; /* Adjust button position */
+    }
+
+    .carousel__button--right {
+        right: -10px; /* Adjust button position */
+    }
+
+    .carousel_indicator {
+        width: 10px; /* Smaller indicators */
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        width: 100%; /* Full width on mobile */
+        height: 300px; /* Reduce height for mobile */
+        margin: 10px 0; /* Reduce margin */
+    }
+
+    .carousel_containter {
+        margin: 10px; /* Reduce container margin */
+    }
+
+    .carousel_button img {
+        width: 15px; /* Smaller buttons on mobile */
+    }
+
+    .carousel__button--left {
+        left: -10px; /* Adjust button position */
+    }
+
+    .carousel__button--right {
+        right: -5px; /* Adjust button position */
+    }
+
+    .carousel_indicator {
+        width: 8px; /* Smaller indicators */
+        height: 8px;
+        margin: 0 8px; /* Reduce margin */
+    }
+
+    .carouel_nav {
+        margin-top: 5px; /* Reduce nav margin */
+        padding: 5px 0; /* Reduce nav padding */
+    }
 }
