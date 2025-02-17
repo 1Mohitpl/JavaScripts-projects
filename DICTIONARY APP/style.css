@@ -62,11 +62,45 @@ input{
     background-color: darkgray;
 }
 
-button{
-   background: #553c9a;
-   color: #ffff;
-   height: 100%;
-   font-size: 30px;
-   padding: 0 20px;
-   cursor: pointer;
+button {
+    background: #553c9a;
+    color: #fff;
+    height: 100%;
+    font-size: 30px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+button:hover {
+    color: azure;
+    background: #6a4fb3; /* Slightly lighter shade */
+    transform: scale(1.05); /* Adds a subtle zoom effect */
+}
+
+section.data{
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.loading{
+    display: none;
+}
+
+section.data p.def{
+    font-size: 20px;
+    color: black;
+    line-height: 1.7;
+}
+
+.Suggested{
+    background-color:  #b794f4;
+    color: white;
+    padding: 2px  10px;
+    border: 6px;
+    margin-top: 10px;
+    margin-right: 10px;
+    display: inline-block;
 }
